@@ -1,5 +1,3 @@
-// This problem was asked by Google.
-//
 //  Given two singly linked lists that intersect at some point, find the intersecting node.
 //  The lists are non-cyclical.
 //
@@ -8,9 +6,7 @@
 //
 //  In this example, assume nodes with the same value are the exact same
 //  node objects.
-//
-//  Do this in O(M + N) time (where M and N are the lengths of the lists) and
-//  constant space.
+
 
 class Node {
   int val;
