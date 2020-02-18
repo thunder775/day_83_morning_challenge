@@ -14,20 +14,65 @@ class Node {
   Node(this.val);
 }
 
+/// O(n*m)
+//Node getIntersectingNode(Node A, Node B) {
+//  Node temp1 = A;
+//  Node temp2 = B;
+//  while (temp1.next != null) {
+//    while (temp2.next != null) {
+//      if (temp1.val == temp2.val) {
+//        return temp1;
+//      }
+//      temp2 = temp2.next;
+//    }
+//    temp1 = temp1.next;
+//    temp2 = B;
+//  }
+//  return null;
+//}
+/// O(n+m)
 Node getIntersectingNode(Node A, Node B) {
-  Node temp1 = A;
-  Node temp2 = B;
-  while (temp1.next != null) {
-    while (temp2.next != null) {
-      if (temp1.val == temp2.val) {
-        return temp1;
-      }
-      temp2 = temp2.next;
+  List temp1 = [];
+  List temp2 = [];
+  Node a = A;
+  Node b = B;
+  while (true) {
+    temp1.add(a.val);
+    if (a.next == null) {
+      break;
     }
-    temp1 = temp1.next;
-    temp2 = B;
+    a = a.next;
   }
-  return null;
+  while (true) {
+    temp2.add(b.val);
+    if (b.next == null) {
+      break;
+    }
+    b = b.next;
+  }
+  print(temp1);
+  print(temp2);
+  int intersectingNodeVal = 0;
+  if (temp2.last != temp1.last) {
+    return null;
+  } else {
+    int len = temp1.length <= temp2.length ? temp1.length : temp2.length;
+    for (int i = 1; i <= len; i++) {
+      if (temp1[temp1.length - i] == temp2[temp2.length - i]) {
+        continue;
+      } else {
+        intersectingNodeVal = temp1[temp1.length - (i - 1)];
+        break;
+      }
+    }
+  }
+  a = A;
+  while (true) {
+    if (a.val == intersectingNodeVal) {
+      return a;
+    }
+    a = a.next;
+  }
 }
 
 void main() {
