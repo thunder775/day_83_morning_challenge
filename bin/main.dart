@@ -80,16 +80,16 @@ class Node {
 //}
 /// O(m+n) without list
 Node getIntersectingNode(Node A, Node B) {
-  int lengthA = 1;
-  int lenghtB = 1;
+  int lengthA = 0;
+  int lenghtB = 0;
   Node a = A;
   Node b = B;
 
-  while (a.next != null) {
+  while (a != null) {
     lengthA++;
     a = a.next;
   }
-  while (b.next != null) {
+  while (b!= null) {
     lenghtB++;
     b = b.next;
   }
@@ -106,15 +106,12 @@ Node getIntersectingNode(Node A, Node B) {
     }
   }
 
-  while (true) {
+  while (A!=null) {
     if (A.val == B.val) {
       return A;
     }
     A = A.next;
     B = B.next;
-    if (A.next == null || B.next == null) {
-      return null;
-    }
   }
 }
 
