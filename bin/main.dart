@@ -79,12 +79,12 @@ class Node {
 //  }
 //}
 int getNodeLength(Node node) {
-  int temp = 0;
+  int nodeLength = 0;
   while (node != null) {
-    temp++;
+    nodeLength++;
     node = node.next;
   }
-  return temp;
+  return nodeLength;
 }
 
 /// O(m+n) without list
