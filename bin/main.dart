@@ -88,29 +88,26 @@ int getNodeLength(Node node) {
 }
 
 /// O(m+n) without list
-Node getIntersectingNode(Node node1, Node node2) {
-  int lengthA = 0;
-  int lengthB = 0;
-  Node tempNode1 = node1;
-  Node tempNode2 = node2;
-  lengthA = getNodeLength(tempNode1);
-  lengthB = getNodeLength(tempNode2);
-  node2 = getPointerToSamePosition(lengthB, lengthA, node2);
-  node1 = getPointerToSamePosition(lengthA, lengthB, node1);
-  while (node1 != null) {
-    if (node1.val == node2.val) {
-      return node1;
+Node getIntersectingNode(Node nodeA, Node nodeB) {
+  int lengthA = getNodeLength(nodeA);
+  int lengthB = getNodeLength(nodeB);
+  if (lengthA > lengthB) {
+    nodeA = getPointerToSamePosition(lengthA - lengthB, nodeA);
+  } else {
+    nodeB = getPointerToSamePosition(lengthB - lengthA, nodeB);
+  }
+  while (nodeA != null) {
+    if (nodeA.val == nodeB.val) {
+      return nodeA;
     }
-    node1 = node1.next;
-    node2 = node2.next;
+    nodeA = nodeA.next;
+    nodeB = nodeB.next;
   }
 }
 
-Node getPointerToSamePosition(int lengthA, int lengthB, Node node) {
-  if (lengthA >= lengthB) {
-    for (int i = 0; i < lengthA - lengthB; i++) {
-      node = node.next;
-    }
+Node getPointerToSamePosition(int difference, Node node) {
+  for (int i = 0; i < difference; i++) {
+    node = node.next;
   }
   return node;
 }
